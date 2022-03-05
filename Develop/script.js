@@ -14,7 +14,7 @@ var trueIndexValue = array [selectIndex]
 return trueIndexValue
 }
 
-function generatePassword () {
+function userQuestions () {
   var numberOfCharacters = window.prompt("How many characters would you like your password to contain?");
   var characterQuanity = parseInt(numberOfCharacters);
   if (characterQuanity >= 8 && characterQuanity <= 128) {
@@ -39,7 +39,33 @@ console.log(results)
   return results;
 }
 //console.log(generatePassword().results.confirmUppercase)
+function generatePassword(){
+  var userResponse = userQuestions()
+  var possilbleCharacters = []
+  var newPassword = []
 
+
+ if (userResponse.confirmUppercase === true){
+   possilbleCharacters = possilbleCharacters.concat(arrayUpper)
+   possilbleCharacters.push(randomizeArray(arrayUpper))
+ }
+
+ if (userResponse.confirmLowerCase === true){
+   possilbleCharacters = possilbleCharacters.concat(arrayLow)
+   possilbleCharacters.push(randomizeArray(arrayLow))
+ }
+
+ if (userResponse.confirmNumeric === true){
+   possilbleCharacters = possilbleCharacters.concat(arrayNumeric)
+   possilbleCharacters.push(randomizeArray(arrayNumeric))
+ }
+
+ if (userResponse.confirmSpecialChar === true) {
+  possilbleCharacters = possilbleCharacters.concat(arrayNumeric)
+  possilbleCharacters.push(randomizeArray(arraySpecialChar))
+}
+
+}
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
