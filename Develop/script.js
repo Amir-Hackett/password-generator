@@ -17,7 +17,11 @@ return trueIndexValue
 function userQuestions () {
   var numberOfCharacters = window.prompt("How many characters would you like your password to contain?");
   var characterQuanity = parseInt(numberOfCharacters);
-  if (characterQuanity >= 8 && characterQuanity <= 128)
+ 
+  if (characterQuanity < 8 || characterQuanity > 128) {
+    alert("You must type a number between 8 and 128.")
+    return userQuestions();
+  }
 
   var upperCase = window.confirm("Would you like to use uppercase case?");
   var lowerCase = window.confirm("Would you like to use lower case?");
