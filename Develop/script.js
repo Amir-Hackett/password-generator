@@ -10,18 +10,14 @@ var arrayLow = ['a','b','c','d','e', ]
 
 function randomizeArray(array) {
 var selectIndex = Math.floor(Math.random() * array.length)
-var trueIndexValue = array [selectIndex]
+var trueIndexValue = array[selectIndex]
 return trueIndexValue
 }
 
 function userQuestions () {
   var numberOfCharacters = window.prompt("How many characters would you like your password to contain?");
   var characterQuanity = parseInt(numberOfCharacters);
-  if (characterQuanity >= 8 && characterQuanity <= 128) {
-    
-    for( var i = 0; i < characterQuanity; i++);{
-    }
-  }
+  if (characterQuanity >= 8 && characterQuanity <= 128) {}
 
   var upperCase = window.confirm("Would you like to use uppercase case?");
   var lowerCase = window.confirm("Would you like to use lower case?");
@@ -29,7 +25,7 @@ function userQuestions () {
   var specialChar = window.confirm("Would you like to use special characters?");
 
   var results = {
-    confirmCharacterQuanity: confirmCharacterQuanity,
+    confirmCharacterQuanity: characterQuanity,
     confirmUppercase: upperCase, 
     confirmLowerCase: lowerCase,
     confirmNumeric: numeric,
@@ -43,7 +39,6 @@ function generatePassword(){
   var userResponse = userQuestions()
   var possilbleCharacters = []
   var newPassword = []
-
 
  if (userResponse.confirmUppercase === true){
    possilbleCharacters = possilbleCharacters.concat(arrayUpper)
@@ -61,10 +56,16 @@ function generatePassword(){
  }
 
  if (userResponse.confirmSpecialChar === true) {
-  possilbleCharacters = possilbleCharacters.concat(arrayNumeric)
+  possilbleCharacters = possilbleCharacters.concat(arraySpecialChar)
   possilbleCharacters.push(randomizeArray(arraySpecialChar))
 }
 
+for( var i = 0; i < userResponse.confirmCharacterQuanity; i++) {
+ var stagedArray = randomizeArray(possilbleCharacters)
+ newPassword.push(stagedArray)
+}
+console.log(newPassword)
+return newPassword.join('')
 }
 // Write password to the #password input
 function writePassword() {
